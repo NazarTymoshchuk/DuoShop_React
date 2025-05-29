@@ -1,0 +1,10 @@
+header {
+    height: 64px;
+    background-color: #17171f
+;
+    padding: 10px;
+}
+
+header img {
+    height: 45px;
+}
