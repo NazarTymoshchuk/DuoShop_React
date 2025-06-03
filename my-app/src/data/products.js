@@ -7,7 +7,7 @@ const products = [
   },
   {
     id: 2,
-    img: "https://content2.rozetka.com.ua/goods/images/big_tile/346793468.jpg",
+    img: "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
     name: "Смартфон Samsung Galaxy S23",
     price: 37999
   },

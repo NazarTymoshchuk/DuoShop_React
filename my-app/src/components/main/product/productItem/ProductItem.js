@@ -1,10 +1,28 @@
+import "./ProductItem.css"
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Card } from 'antd';
+
+const { Meta } = Card;
+
 function ProductItem({img, name, price}) {
     return (
-        <div>
-            <img src={img} alt="" />
-            <h3>{name}</h3>
-            <p>{price}</p>
-        </div>
+        <Card
+            style={{ width: 300 }}
+            cover={
+            <img className='card-img'
+                alt="example"
+                src={img}
+            />
+            }
+            actions={[
+            <ShoppingCartOutlined />
+            ]}
+        >
+            <Meta
+            title="Card title"
+            description="This is the description"
+            />
+        </Card>
     )
 }
 
