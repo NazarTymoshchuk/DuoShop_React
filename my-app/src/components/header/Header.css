@@ -1,10 +1,17 @@
 header {
     height: 64px;
-    background-color: #17171f
-;
+    background-color: #17171f;
     padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 header img {
     height: 45px;
+}
+
+.search-bar {
+    width: 40%;
+    align-self: center;
 }
