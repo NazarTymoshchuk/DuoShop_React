@@ -3,16 +3,22 @@ import HeaderBar from './components/header/Header';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import Container from 'react-bootstrap/esm/Container';
+import ProductDetails from './components/main/product/productDetails/ProductDetails';
 
 function App() {
   return (
     <div>
       <HeaderBar />
       
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/products' element={<ProductsPage />} />
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/products' element={<ProductsPage />} />
+          <Route path='/products/:id' element={<ProductDetails />} />
+        </Routes>
+      </Container>
+      
     </div>
   );
 }
