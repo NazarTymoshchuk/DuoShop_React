@@ -1,0 +1,13 @@
+.container-details {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+    gap: 20px;
+
+    margin-top: 40px;
+}
+
+.img-c {
+    width: 100%;
+    height: 600px;
+    object-fit: contain;
+}

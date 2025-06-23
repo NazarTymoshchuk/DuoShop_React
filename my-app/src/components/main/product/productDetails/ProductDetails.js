@@ -1,6 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import products from '../../../../data/products';
 import { useParams } from 'react-router-dom';
+import "./ProductDetails.css"
 
 function ProductDetails() {
 
@@ -9,17 +10,13 @@ function ProductDetails() {
     const product = products.find((prod) => prod.id == id)
 
     return (
-        <div>
-            <Carousel>
-                <Carousel.Item>
-                    <img src="https://img.ktc.ua/img/base/1_505/5/303025.webp" alt="" />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img src="https://img.ktc.ua/img/base/1_505/5/303025.webp" alt="" />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img src="https://img.ktc.ua/img/base/1_505/5/303025.webp" alt="" />
-                </Carousel.Item>
+        <div className='container-details'>
+            <Carousel variant='dark'>
+                {product.images.map((img) => (
+                    <Carousel.Item>
+                        <img className='img-c' src={img} alt="" />
+                    </Carousel.Item>
+                ))}
             </Carousel>
             <div>
                 <h2>{product.name}</h2>

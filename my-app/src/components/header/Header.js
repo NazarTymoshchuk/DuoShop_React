@@ -11,7 +11,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 function HeaderBar() {
     return (
     <Navbar expand="lg" className="bg-dark px-5" variant="dark">
-      <Container fluid>
+      <Container>
         <Navbar.Brand href="/">
             <img className="img-logo" src={logo} alt="" />
         </Navbar.Brand>

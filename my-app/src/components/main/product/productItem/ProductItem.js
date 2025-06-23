@@ -1,14 +1,14 @@
 import "./ProductItem.css"
 import { Link } from 'react-router-dom';
 
-function ProductItem({id, img, name, price}) {
+function ProductItem({id, images, name, price}) {
     return (
         <div className="card-product">
             <Link className="card-link" to={`/products/${id}`}>
-                <img className="card-img" src={img} alt="" />
+                <img className="card-img" src={images[0]} alt="" />
                 <h3>{name}</h3>
                 <p>{price} UAH</p>
-            </Link>    
+            </Link>
         </div>
     )
 }
