@@ -1,0 +1,7 @@
+.products-container {
+    display: grid;
+
+    grid-template-columns: 300px 5fr;
+
+    margin-top: 50px;
+}

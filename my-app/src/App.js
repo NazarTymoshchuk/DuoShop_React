@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/esm/Container';
 import ProductDetails from './components/main/product/productDetails/ProductDetails';
 
 function App() {
+  
   return (
     <div>
       <HeaderBar />

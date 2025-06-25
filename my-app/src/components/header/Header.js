@@ -32,7 +32,7 @@ function HeaderBar() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success"><i class="bi bi-search"></i></Button>
+            <Button variant="outline-success"><i className="bi bi-search"></i></Button>
           </Form>
         </Navbar.Collapse>
       </Container>
