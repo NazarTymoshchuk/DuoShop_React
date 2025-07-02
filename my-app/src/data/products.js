@@ -7,7 +7,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/6/656176.jpg"
     ],
     name: "Ноутбук Lenovo IdeaPad 5",
-    price: 22999
+    price: 22999,
+    category: "Laptops"
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/3/655783.jpg"
     ],
     name: "Смартфон Samsung Galaxy A34",
-    price: 11999
+    price: 11999,
+    category: "Smartphones"
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/5/656185.jpg"
     ],
     name: "Навушники Sony WH-CH520",
-    price: 2199
+    price: 2199,
+    category: "Audio"
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/2/656182.jpg"
     ],
     name: "Монітор LG 24MP60G-B",
-    price: 4999
+    price: 4999,
+    category: "Monitors"
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/3/656153.jpg"
     ],
     name: "Планшет Apple iPad 9 10.2\" Wi-Fi 64GB",
-    price: 14899
+    price: 14899,
+    category: "Tablets"
   },
   {
     id: 6,
@@ -57,7 +62,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/6/656156.jpg"
     ],
     name: "Ігрова мишка Logitech G502 HERO",
-    price: 2399
+    price: 2399,
+    category: "Peripherals"
   },
   {
     id: 7,
@@ -67,7 +73,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/1/656151.jpg"
     ],
     name: "Клавіатура Redragon Kumara K552 RGB",
-    price: 1699
+    price: 1699,
+    category: "Peripherals"
   },
   {
     id: 8,
@@ -77,7 +84,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/2/656152.jpg"
     ],
     name: "Гарнітура Razer Kraken X",
-    price: 2199
+    price: 2199,
+    category: "Audio"
   },
   {
     id: 9,
@@ -87,7 +95,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/3/656163.jpg"
     ],
     name: "Пилосос Xiaomi Mi G10",
-    price: 7999
+    price: 7999,
+    category: "Home appliances"
   },
   {
     id: 10,
@@ -97,7 +106,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/6/656166.jpg"
     ],
     name: "Смарт-годинник Amazfit Bip 3",
-    price: 2499
+    price: 2499,
+    category: "Gadgets"
   },
   {
     id: 11,
@@ -107,7 +117,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/2/656172.jpg"
     ],
     name: "Мікрофон Fifine K669B",
-    price: 1599
+    price: 1599,
+    category: "Peripherals"
   },
   {
     id: 12,
@@ -117,7 +128,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/5/656175.jpg"
     ],
     name: "Ноутбук ASUS VivoBook 15",
-    price: 19999
+    price: 19999,
+    category: "Laptops"
   },
   {
     id: 13,
@@ -127,7 +139,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/0/656180.jpg"
     ],
     name: "Тостер Philips HD2582/90",
-    price: 999
+    price: 999,
+    category: "Kitchen appliances"
   },
   {
     id: 14,
@@ -137,7 +150,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/3/656183.jpg"
     ],
     name: "Електрочайник Bosch TWK3A011",
-    price: 899
+    price: 899,
+    category: "Kitchen appliances"
   },
   {
     id: 15,
@@ -147,7 +161,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/1/656191.jpg"
     ],
     name: "Кавоварка DeLonghi Magnifica S",
-    price: 8999
+    price: 8999,
+    category: "Kitchen appliances"
   },
   {
     id: 16,
@@ -157,7 +172,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/2/656192.jpg"
     ],
     name: "Телевізор Samsung UE43CU7172U",
-    price: 12999
+    price: 12999,
+    category: "TVs"
   },
   {
     id: 17,
@@ -167,7 +183,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/6/656196.jpg"
     ],
     name: "Холодильник LG GA-B509SEUM",
-    price: 19999
+    price: 19999,
+    category: "Home appliances"
   },
   {
     id: 18,
@@ -177,7 +194,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/9/656189.jpg"
     ],
     name: "Пральна машина Bosch WAN24200BY",
-    price: 18999
+    price: 18999,
+    category: "Home appliances"
   },
   {
     id: 19,
@@ -187,7 +205,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/7/656187.jpg"
     ],
     name: "Варильна поверхня Electrolux EHH6240ISK",
-    price: 8499
+    price: 8499,
+    category: "Kitchen appliances"
   },
   {
     id: 20,
@@ -197,7 +216,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/2/656182.jpg"
     ],
     name: "Мультиварка Moulinex MK707832",
-    price: 3499
+    price: 3499,
+    category: "Kitchen appliances"
   },
   {
     id: 21,
@@ -207,7 +227,8 @@ const products = [
       "https://img.ktc.ua/img/base/1_505/5/656185.jpg"
     ],
     name: "Смартфон iPhone 13 128GB",
-    price: 29999
+    price: 29999,
+    category: "Smartphones"
   }
 ];
 
