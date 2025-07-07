@@ -7,7 +7,7 @@ function ProductDetails() {
 
     const { id } = useParams();
 
-    const product = products.find((prod) => prod.id == id)
+    const product = products.find((prod) => prod.id === Number(id))
 
     return (
         <div className='container-details'>
