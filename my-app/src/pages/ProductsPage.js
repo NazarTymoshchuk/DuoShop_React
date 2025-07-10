@@ -4,6 +4,7 @@ import "./styles-pages/ProductsPage.css"
 import { useState } from "react";
 import products from "../data/products";
 
+
 function ProductsPage() {
 
     const maxPriceProduct = Math.max(...products.map(p => p.price))
@@ -13,14 +14,12 @@ function ProductsPage() {
         category: "",
         producer: ""
     })
-
-    console.log(filters.maxPrice);
     
 
     return (
         <div className="products-container">
             <FilterBar filters={filters} setFilters={setFilters} maxPriceProduct={maxPriceProduct}/>
-            <ProductList filters={filters} />
+            <ProductList filters={filters} />   
         </div>
     )
 }
