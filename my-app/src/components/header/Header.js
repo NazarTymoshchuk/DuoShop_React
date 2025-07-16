@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
@@ -67,6 +67,7 @@ function HeaderBar() {
           />
           <Button variant="outline-success"><i className="bi bi-search"></i></Button> 
         </Form>
+        <Link to="/cart" className="mx-5" variant="outline-success"><i class="bi bi-cart"></i></Link>
       </Navbar.Collapse>
     </Container>
   </Navbar>

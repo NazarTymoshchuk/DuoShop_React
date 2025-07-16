@@ -69,7 +69,7 @@ function ProductList({filters}) {
                 <Row className="g-0 inner-border-grid">
                     {sortedProducts.map((product) => (
                         <Col key={product.id} xxl={3} xl={4} md={6}>
-                            <ProductItem {...product} />
+                            <ProductItem product={product} />
                         </Col>
                     ))} 
                 </Row>
