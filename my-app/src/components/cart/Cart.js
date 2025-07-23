@@ -1,22 +1,42 @@
+import Button from "react-bootstrap/esm/Button";
 import { useCart } from "../../context/CartContext"
+import Modal from 'react-bootstrap/Modal';
 
-
-function Cart() {
+function CartModal(props) {
 
     const {cart, dispatch} = useCart();
 
+    const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
+
     return (
-        <div>
-            <h2>Cart</h2>
+    <Modal
+    {...props}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+    >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Cart
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            {cart.length !== 0 ? ( <h4>Products in card: {cart.length} </h4>) : (<h4>Cart is empty</h4>)}
 
             {cart.map(p => (
                 <div>
                     <p>{p.name}</p>
                     <p>{p.price}</p>
+                    <Button onClick={() => dispatch({ type: "REMOVE", id: p.id })}><i class="bi bi-cart-x"></i></Button>
                 </div>
             ))}
-        </div>
-    )
+        </Modal.Body>
+        <Modal.Footer style={{justifyContent: "space-between"}}>
+            <h3>Total amount: {totalAmount}</h3>
+            <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+    </Modal>
+    );
 }
 
-export default Cart;
+export default CartModal;
