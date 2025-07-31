@@ -5,8 +5,24 @@ const CartContext = createContext()
 const cartReducer = (state, action) => {
     switch (action.type) {
         case "ADD":
-            return [...state, action.product]
+            const existProduct = state.find(p => p.id === action.product.id)
+            
+            console.log(state);
+            
+
+            if (existProduct) {
+                return state.map(p => p.id === action.product.id ? {...p, quantity: p.quantity + 1} : p)    
+            }
+            
+            return [...state, {...action.product, quantity: 1}]
         
+        case "INCREASE":
+            return state.map(p => p.id === action.prod.id ? {...p, quantity: p.quantity + 1} : p)
+
+        case "DECREASE":
+            return state.map(p => p.id === action.prod.id ? {...p, quantity: p.quantity - 1} : p)
+
+
         case "REMOVE":
             return state.filter(p => p.id !== action.id)
         

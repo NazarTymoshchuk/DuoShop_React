@@ -7,7 +7,7 @@ function CartModal(props) {
 
     const {cart, dispatch} = useCart();
 
-    const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
+    const totalAmount = cart.reduce((sum, p) => sum + p.price * p.quantity, 0)
 
     return (
     <Modal
@@ -24,16 +24,21 @@ function CartModal(props) {
         <Modal.Body>
             {cart.length !== 0 ? ( <h4>Products in card: {cart.length} </h4>) : (<h4>Cart is empty</h4>)}
 
-            {cart.map(p => (
-                <div className="product-cart">
-                    <img src={p.images[0]} alt="" />
+            {cart.map(prod => (
+                <div className="product-cart" key={prod.id}>
+                    <img src={prod.images[0]} alt="" />
                     <div>
-                        <p>{p.name}</p>
-                        <h4>{p.price}</h4>
+                        <p>{prod.name}</p>
+                        <h4>{prod.price}</h4>
                     </div>
-                    <Button style={{marginLeft: "auto"}} onClick={() => dispatch({ type: "REMOVE", id: p.id })}><i class="bi bi-cart-x"></i></Button>
+                    <div className="cart-quantity">
+                        <Button onClick={() => dispatch({ type: "DECREASE", prod })}>-</Button>
+                        {prod.quantity}
+                        <Button onClick={() => dispatch({ type: "INCREASE", prod })}>+</Button>
+                    </div>
+                    <Button style={{marginLeft: "auto"}} onClick={() => dispatch({ type: "REMOVE", id: prod.id })}><i class="bi bi-cart-x"></i></Button>
                 </div>
-            ))} 
+            ))}
         </Modal.Body>
         <Modal.Footer style={{justifyContent: "space-between"}}>
             <h3>Total amount: {totalAmount}</h3>

@@ -12,5 +12,10 @@
     width: 100px;
     height: 100px;
     object-fit: contain;
-    margin-right: 200px;
+    margin-right: 150px;
+}
+
+.cart-quantity {
+    margin-left: 100px;
+    font-weight: bold;
 }

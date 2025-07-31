@@ -13,7 +13,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search)    
 }
 
-const PRODUCTS_ON_PAGE = 8;
+const PRODUCTS_ON_PAGE = 12;
 
 function ProductList({filters}) {
 
