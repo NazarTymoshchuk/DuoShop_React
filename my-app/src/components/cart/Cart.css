@@ -2,3 +2,15 @@
     display: flex;
     justify-content: space-between;
 }
+
+.product-cart {
+    display: flex;
+    margin-top: 20px;
+}
+
+.product-cart img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 200px;
+}

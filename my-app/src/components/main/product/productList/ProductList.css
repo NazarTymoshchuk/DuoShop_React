@@ -31,3 +31,9 @@
     color: rgb(25, 164, 155);
     font-weight: bold;
 }
+
+.pagination-menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}

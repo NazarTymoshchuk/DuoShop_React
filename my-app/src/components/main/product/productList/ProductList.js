@@ -4,14 +4,16 @@ import "./ProductList.css"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
+import Pagination from 'react-bootstrap/Pagination';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)    
 }
+
+const PRODUCTS_ON_PAGE = 8;
 
 function ProductList({filters}) {
 
@@ -43,9 +45,22 @@ function ProductList({filters}) {
         }
     })
 
+    const [currentPage, setCurrentPage] = useState(1)
 
-    // filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
-    // filteredProducts.sort((a, b) => b.price - a.price)
+    const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_ON_PAGE)
+
+    const lastIndex = currentPage * PRODUCTS_ON_PAGE
+    const firtsIndex = lastIndex - PRODUCTS_ON_PAGE
+    const currentProducts = sortedProducts.slice(firtsIndex, lastIndex)
+
+    let items = [];
+    for (let number = 1; number <= totalPages; number++) {
+        items.push(
+            <Pagination.Item key={number} active={number===currentPage} onClick={() => setCurrentPage(number)}>
+                {number}
+            </Pagination.Item>
+        );
+    }
 
     return (
         <div>
@@ -67,13 +82,26 @@ function ProductList({filters}) {
                 </div>
                 
                 <Row className="g-0 inner-border-grid">
-                    {sortedProducts.map((product) => (
+                    {currentProducts.map((product) => (
                         <Col key={product.id} xxl={3} xl={4} md={6}>
-                            <ProductItem product={product} />
+                            <ProductItem product={product} />   
                         </Col>
                     ))} 
                 </Row>
             </Container>
+            
+            <div className="pagination-menu">
+                <Pagination>
+                    <Pagination.First className="mx-2" onClick={() => setCurrentPage(1)} disabled={currentPage === 1}/>    
+                    <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}/>
+
+                    {items}
+
+                    <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}/>
+                    <Pagination.Last className="mx-2" onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages}/>
+                </Pagination>
+            </div>
+            
         </div>     
     )
 }
