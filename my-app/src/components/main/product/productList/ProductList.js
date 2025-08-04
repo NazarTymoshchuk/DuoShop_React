@@ -4,8 +4,8 @@ import "./ProductList.css"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
 
@@ -18,11 +18,25 @@ const PRODUCTS_ON_PAGE = 12;
 function ProductList({filters}) {
 
     const {categoryname} = useParams();
+    const navigate = useNavigate();
 
     const query = useQuery();
     const search = query.get("search")?.toLocaleLowerCase() || ""
 
-    const [sortVariant, setSortVariant] = useState("Default")
+    const sortQuery = query.get("sort") || "Default"
+
+    const [sortVariant, setSortVariant] = useState(sortQuery)
+
+    useEffect(() => {
+        const params = new URLSearchParams();
+        
+        if(sortVariant !== "Default") params.set("sort", sortVariant)
+        if(search) params.set("search", search)
+
+        navigate({
+            search: params.toString()
+        })
+    }, [sortVariant])
 
     const filteredProducts = products.filter((prod) => (
         prod.price <= filters.maxPrice && 
@@ -32,13 +46,13 @@ function ProductList({filters}) {
 
     const sortedProducts = filteredProducts.sort((a, b) => {
         switch (sortVariant) {
-            case "The cheapest":
+            case "thecheapest":
                 return a.price - b.price;
-            case "The most expensive":
+            case "themostexpensive":
                 return b.price - a.price;
-            case "A-Z":
+            case "a-z":
                 return a.name.localeCompare(b.name);
-            case "Z-A":
+            case "z-a":
                 return b.name.localeCompare(a.name);
             default:
                 break;
@@ -73,10 +87,10 @@ function ProductList({filters}) {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => setSortVariant("The cheapest")}>The cheapest</Dropdown.Item>
-                            <Dropdown.Item onClick={() => setSortVariant("The most expensive")}>The most expensive</Dropdown.Item>
-                            <Dropdown.Item onClick={() => setSortVariant("A-Z")}>A-Z</Dropdown.Item>
-                            <Dropdown.Item onClick={() => setSortVariant("Z-A")}>Z-A</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setSortVariant("thecheapest")}>The cheapest</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setSortVariant("themostexpensive")}>The most expensive</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setSortVariant("a-z")}>A-Z</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setSortVariant("z-a")}>Z-A</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
