@@ -6,6 +6,7 @@ import ProductsPage from './pages/ProductsPage';
 import Container from 'react-bootstrap/esm/Container';
 import ProductDetails from './components/main/product/productDetails/ProductDetails';
 import Cart from './components/cart/Cart';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
           <Route path='/products/:categoryname' element={<ProductsPage />} />
           <Route path='/products/detail/:id' element={<ProductDetails />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
         </Routes>
       </Container>
       

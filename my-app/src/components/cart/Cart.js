@@ -2,12 +2,20 @@ import Button from "react-bootstrap/esm/Button";
 import { useCart } from "../../context/CartContext"
 import Modal from 'react-bootstrap/Modal';
 import "./Cart.css"
+import { useNavigate } from "react-router-dom";
 
 function CartModal(props) {
+
+    const navigate = useNavigate();
 
     const {cart, dispatch} = useCart();
 
     const totalAmount = cart.reduce((sum, p) => sum + p.price * p.quantity, 0)
+
+    function handleClick() {
+        navigate("/checkout")
+        props.onHide()
+    }
 
     return (
     <Modal
@@ -42,7 +50,7 @@ function CartModal(props) {
         </Modal.Body>
         <Modal.Footer style={{justifyContent: "space-between"}}>
             <h3>Total amount: {totalAmount}</h3>
-            <Button onClick={props.onHide}>Close</Button>
+            <Button variant="success" onClick={handleClick}> Confirm Order</Button>
         </Modal.Footer>
     </Modal>
     );

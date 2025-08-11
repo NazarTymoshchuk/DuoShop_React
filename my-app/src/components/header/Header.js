@@ -23,7 +23,8 @@ function HeaderBar() {
   function handleOnSearch(e) {
     if (e.key === "Enter") {
       e.preventDefault()
-      navigate(`/products?search=${encodeURIComponent(query)}`)
+      if(query) navigate(`/products?search=${encodeURIComponent(query)}`)
+      else navigate(`/products`)
     }
   }
 

@@ -13,7 +13,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search)    
 }
 
-const PRODUCTS_ON_PAGE = 12;
+const PRODUCTS_ON_PAGE = 7;
 
 function ProductList({filters}) {
 
@@ -26,17 +26,6 @@ function ProductList({filters}) {
     const sortQuery = query.get("sort") || "Default"
 
     const [sortVariant, setSortVariant] = useState(sortQuery)
-
-    useEffect(() => {
-        const params = new URLSearchParams();
-        
-        if(sortVariant !== "Default") params.set("sort", sortVariant)
-        if(search) params.set("search", search)
-
-        navigate({
-            search: params.toString()
-        })
-    }, [sortVariant])
 
     const filteredProducts = products.filter((prod) => (
         prod.price <= filters.maxPrice && 
@@ -59,7 +48,9 @@ function ProductList({filters}) {
         }
     })
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const pageQuery = query.get("sort") || "1"
+
+    const [currentPage, setCurrentPage] = useState(Number(pageQuery))
 
     const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_ON_PAGE)
 
@@ -76,14 +67,25 @@ function ProductList({filters}) {
         );
     }
 
+    useEffect(() => {
+        const params = new URLSearchParams();
+        
+        if(sortVariant !== "Default") params.set("sort", sortVariant)
+        if(currentPage !== 1) params.set("page", currentPage)
+        if(search) params.set("search", search)
+
+        navigate({
+            search: params.toString()
+        })
+    }, [sortVariant, currentPage])
+
     return (
         <div>
             <Container>
                 <div className="sort-container">
-                    <p>Sort: </p>
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" className="sort-menu" id="dropdown-basic">
-                            {sortVariant}
+                            <span className="sort-toggle">Sort: </span> {sortVariant}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
