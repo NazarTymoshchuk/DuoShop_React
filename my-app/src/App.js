@@ -8,6 +8,7 @@ import ProductDetails from './components/main/product/productDetails/ProductDeta
 import Cart from './components/cart/Cart';
 import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/authorization/LoginPage';
+import PrivateRoute from './components/privateRoutes/PrivateRoute';
 
 function App() {
   
@@ -21,8 +22,10 @@ function App() {
           <Route path='/products' element={<ProductsPage />} />
           <Route path='/products/:categoryname' element={<ProductsPage />} />
           <Route path='/products/detail/:id' element={<ProductDetails />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='/checkout' element={
+            <PrivateRoute>
+              <CheckoutPage />
+            </PrivateRoute>} />
           <Route path='/login' element={<LoginPage />} />
         </Routes>
       </Container>
