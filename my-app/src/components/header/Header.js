@@ -28,6 +28,10 @@ function HeaderBar() {
     }
   }
 
+  function handleOnProfile() {
+    navigate("/login")
+  }
+
   return (
   <Navbar expand="lg" className="bg-dark px-5" variant="dark">
     <Container>
@@ -59,10 +63,10 @@ function HeaderBar() {
           </Offcanvas>
           
         </Nav>
-        <Form className="d-flex">
+        <Form className="form-search">
           <Form.Control
             placeholder="Search"
-            className="me-2"
+            className="search-input"
             aria-label="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -71,7 +75,8 @@ function HeaderBar() {
           <Button variant="outline-success"><i className="bi bi-search"></i></Button> 
         </Form>
         {/* <Link to="/cart" className="mx-3" variant="outline-success"><Button variant="outline-success"><i class="bi bi-cart"></i></Button></Link> */}
-        <Button variant="outline-success mx-3" onClick={() => setModalShow(true)}><i class="bi bi-cart"></i></Button>
+        <Button variant="outline-light" className="mx-3" onClick={handleOnProfile}><i class="bi bi-person"></i></Button>
+        <Button variant="outline-light" onClick={() => setModalShow(true)}><i class="bi bi-cart"></i></Button>
 
         <CartModal
           show={modalShow}

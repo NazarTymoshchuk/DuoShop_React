@@ -5,3 +5,14 @@
 .link-dec {
     text-decoration: none;
 }
+
+.form-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-input {
+    width: 60%;
+}
