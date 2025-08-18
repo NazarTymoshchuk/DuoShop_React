@@ -7,13 +7,18 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
     const {login} = useAuth();
     const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
     function handleLoginSubmit(e) {
         e.preventDefault()
         if (username.trim()) {
-            login(username)
-            navigate("/")
+            if (login(username, password)){
+                navigate("/")
+            }
+            else {
+                alert("Incorrect username or password")
+            }
         }
         else {
             alert("Please, fill all fields")
@@ -29,7 +34,7 @@ function LoginPage() {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Login

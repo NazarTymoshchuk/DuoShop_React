@@ -4,9 +4,6 @@ import { useAuth } from "../../context/AuthContext";
 function PrivateRoute({children}) {
     const { isAuth } = useAuth();
 
-    console.log(isAuth);
-    
-
     return isAuth ? children : <Navigate to="/login" replace/>
 }
 
