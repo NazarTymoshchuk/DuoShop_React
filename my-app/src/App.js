@@ -9,6 +9,7 @@ import Cart from './components/cart/Cart';
 import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/authorization/LoginPage';
 import PrivateRoute from './components/privateRoutes/PrivateRoute';
+import RegisterPage from './pages/authorization/RegisterPage';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
               <CheckoutPage />
             </PrivateRoute>} />
           <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
         </Routes>
       </Container>
       

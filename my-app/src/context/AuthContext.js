@@ -29,11 +29,14 @@ export function AuthProvider({children}) {
     function register(username, password) {
         const users = JSON.parse(localStorage.getItem("users")) || []
         const userExist = users.find((u) => u.username === username)
-        if (!userExist) return false
+        
+        if (userExist === null) return false
 
         const newUser = {username, password}
         users.push(newUser)
         localStorage.setItem("users", JSON.stringify(users))
+        console.log(users);
+        
         return true
     }
 
