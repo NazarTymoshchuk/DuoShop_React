@@ -9,6 +9,7 @@ function ProductsPage() {
 
     const maxPriceProduct = Math.max(...products.map(p => p.price))
 
+
     const [filters, setFilters] = useState({
         maxPrice: maxPriceProduct,
         category: "",
@@ -19,7 +20,7 @@ function ProductsPage() {
     return (
         <div className="products-container">
             <FilterBar filters={filters} setFilters={setFilters} maxPriceProduct={maxPriceProduct}/>
-            <ProductList filters={filters} />   
+            <ProductList filters={filters}/>   
         </div>
     )
 }

@@ -15,7 +15,7 @@ function useQuery() {
 
 const PRODUCTS_ON_PAGE = 7;
 
-function ProductList({filters}) {
+function ProductList({filters, setMaxPriceProduct}) {
 
     const {categoryname} = useParams();
     const navigate = useNavigate();
@@ -48,7 +48,22 @@ function ProductList({filters}) {
         }
     })
 
-    const pageQuery = query.get("sort") || "1"
+    function sortView() {
+        switch (sortVariant) {
+            case "thecheapest":
+                return "The cheapest"
+            case "themostexpensive":
+                return "The most expensive";
+            case "a-z":
+                return "A-Z";
+            case "z-a":
+                return "Z-A";
+            default:
+                break;
+        }
+    }
+
+    const pageQuery = query.get("page") || 1
 
     const [currentPage, setCurrentPage] = useState(Number(pageQuery))
 
@@ -85,7 +100,7 @@ function ProductList({filters}) {
                 <div className="sort-container">
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" className="sort-menu" id="dropdown-basic">
-                            <span className="sort-toggle">Sort: </span> {sortVariant}
+                            <span className="sort-toggle">Sort: </span> {sortView()}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>

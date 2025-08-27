@@ -5,11 +5,14 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function CheckoutPage() {
 
     const navigate = useNavigate();
     const {cart, dispatch} = useCart();
+
+    const {addOrder} = useAuth()
     
     const totalAmount = cart.reduce((sum, p) => sum + p.price * p.quantity, 0)
 
@@ -30,6 +33,8 @@ function CheckoutPage() {
             alert("Please, fill all fields")
             return
         }
+
+        addOrder(cart, form, totalAmount)
 
         dispatch({ type: "UPDATE", products: []})
         navigate("/products")

@@ -32,7 +32,12 @@ export function AuthProvider({children}) {
         
         if (userExist === null) return false
 
-        const newUser = {username, password, email}
+        const newUser = {
+            username, 
+            password, 
+            email, 
+            orders: []
+        }
         users.push(newUser)
         localStorage.setItem("users", JSON.stringify(users))
         console.log(users);
@@ -40,10 +45,29 @@ export function AuthProvider({children}) {
         return true
     }
 
+    function addOrder(cart, form, totalAmount) {
+        const order = {
+            id: Date.now(),
+            date: new Date().toLocaleString(),
+            orderProducts: cart,
+            address: form.address,
+            totalAmount: totalAmount
+        }
+
+        console.log(user);
+        
+        const tmpUser = {...user, orders: [...(user.orders), order]}
+
+        
+        
+        setUser(tmpUser)
+        localStorage.setItem("user", JSON.stringify(tmpUser))
+    }
+
     const isAuth = user !== null
 
     return (
-        <AuthContext.Provider value={{user, login, logout, register, isAuth}}>
+        <AuthContext.Provider value={{user, login, logout, register, addOrder, isAuth}}>
             {children}
         </AuthContext.Provider>
     )
