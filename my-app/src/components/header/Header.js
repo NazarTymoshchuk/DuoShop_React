@@ -10,6 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import CartModal from "../cart/Cart";
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useAuth } from "../../context/AuthContext";
 
 function HeaderBar() {
 
@@ -29,8 +31,10 @@ function HeaderBar() {
   }
 
   function handleOnProfile() {
-    navigate("/login")
+    navigate("/profile")
   }
+
+  const {isAuth, logout} = useAuth()
 
   return (
   <Navbar expand="lg" className="bg-dark px-5" variant="dark">
@@ -74,8 +78,22 @@ function HeaderBar() {
           />
           <Button variant="outline-success"><i className="bi bi-search"></i></Button> 
         </Form>
-        {/* <Link to="/cart" className="mx-3" variant="outline-success"><Button variant="outline-success"><i class="bi bi-cart"></i></Button></Link> */}
-        <Button variant="outline-light" className="mx-3" onClick={handleOnProfile}><i class="bi bi-person"></i></Button>
+
+        { isAuth ? (
+        <Dropdown>
+          <Dropdown.Toggle className="mx-3" variant="outline-light" id="dropdown-basic">
+            <i class="bi bi-person"></i>
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleOnProfile}>Profile</Dropdown.Item>
+            <Dropdown.Item>Order history</Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>) : 
+        <Button variant="outline-light" className="mx-3" onClick={handleOnProfile}><i class="bi bi-person"></i></Button>}
+
         <Button variant="outline-light" onClick={() => setModalShow(true)}><i class="bi bi-cart"></i></Button>
 
         <CartModal

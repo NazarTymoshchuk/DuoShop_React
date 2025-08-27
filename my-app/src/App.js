@@ -10,6 +10,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import LoginPage from './pages/authorization/LoginPage';
 import PrivateRoute from './components/privateRoutes/PrivateRoute';
 import RegisterPage from './pages/authorization/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   
@@ -29,6 +30,11 @@ function App() {
             </PrivateRoute>} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
+          <Route path='/profile' element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+            } />
         </Routes>
       </Container>
       

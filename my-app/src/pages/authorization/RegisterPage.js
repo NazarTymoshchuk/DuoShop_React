@@ -9,15 +9,16 @@ function RegisterPage() {
     const {register} = useAuth();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
     const navigate = useNavigate()
 
     function handleRegister(e) {
         e.preventDefault()
-        if (!username || !password) {
+        if (!username || !password || !email) {
             alert("Please fill all fields")
             return;
         }
-        if(register(username, password)) {
+        if(register(username, password, email)) {
             navigate("/login")
         }
         else {
@@ -31,6 +32,11 @@ function RegisterPage() {
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" placeholder="Enter username" value={email} onChange={(e) => setEmail(e.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
