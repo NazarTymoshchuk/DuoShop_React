@@ -15,7 +15,7 @@ function useQuery() {
 
 const PRODUCTS_ON_PAGE = 7;
 
-function ProductList({filters, setMaxPriceProduct}) {
+function ProductList({filters, maxPriceProduct}) {
 
     const {categoryname} = useParams();
     const navigate = useNavigate();
@@ -88,11 +88,13 @@ function ProductList({filters, setMaxPriceProduct}) {
         if(sortVariant !== "Default") params.set("sort", sortVariant)
         if(currentPage !== 1) params.set("page", currentPage)
         if(search) params.set("search", search)
+        if(filters.maxPrice !== maxPriceProduct) params.set("maxprice", filters.maxPrice)
+       
 
         navigate({
             search: params.toString()
         })
-    }, [sortVariant, currentPage])
+    }, [sortVariant, currentPage, filters.maxPrice])
 
     return (
         <div>
