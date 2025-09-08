@@ -8,7 +8,14 @@ function OrderPage() {
 
     const {user} = useAuth()
 
-    const [open, setOpen] = useState(false);
+    const [openOrders, setOpenOrders] = useState({});
+
+    const toggleOrder = (orderId) => {
+        setOpenOrders((prev) => ({
+            ...prev,
+            [orderId]: !prev[orderId], // змінюємо тільки для конкретного замовлення
+        }));
+    };
 
     return (
         <div>
@@ -23,15 +30,15 @@ function OrderPage() {
                             <div>{o.address}</div>
                             <div>{o.totalAmount}</div>
                             <Button
-                                onClick={() => setOpen(!open)}
-                                aria-controls="example-collapse-text"
-                                aria-expanded={open}
+                                onClick={() => toggleOrder(o.id)}
+                                aria-controls={`collapse-${o.id}`}
+                                aria-expanded={!!openOrders[o.id]}
                             >
                                 click
                             </Button>
                         </div>
-                        <Collapse in={open}>
-                            <div>
+                        <Collapse in={!!openOrders[o.id]}>
+                            <div id={`collapse-${o.id}`}>
                                 {o.orderProducts.map((p) => (
                                     <div>
                                         <div>{p.name}</div>
