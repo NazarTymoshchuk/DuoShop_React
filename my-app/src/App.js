@@ -11,6 +11,7 @@ import LoginPage from './pages/authorization/LoginPage';
 import PrivateRoute from './components/privateRoutes/PrivateRoute';
 import RegisterPage from './pages/authorization/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import OrderPage from './pages/OrderPage';
 
 function App() {
   
@@ -34,7 +35,12 @@ function App() {
             <PrivateRoute>
               <ProfilePage />
             </PrivateRoute>
-            } />
+          } />
+          <Route path='/orders' element={
+            <PrivateRoute>
+              <OrderPage />
+            </PrivateRoute>
+          } />
         </Routes>
       </Container>
       

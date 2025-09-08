@@ -87,7 +87,7 @@ function HeaderBar() {
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleOnProfile}>Profile</Dropdown.Item>
-            <Dropdown.Item>Order history</Dropdown.Item>
+            <Dropdown.Item onClick={() => navigate("/orders")}>Order history</Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
           </Dropdown.Menu>
