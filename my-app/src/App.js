@@ -12,11 +12,12 @@ import PrivateRoute from './components/privateRoutes/PrivateRoute';
 import RegisterPage from './pages/authorization/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import OrderPage from './pages/OrderPage';
+import Footer from './components/footer/Footer';
 
 function App() {
   
   return (
-    <div>
+    <div className='App'>
       <HeaderBar />
       
       <Container>
@@ -43,6 +44,8 @@ function App() {
           } />
         </Routes>
       </Container>
+
+      <Footer />
       
     </div>
   );

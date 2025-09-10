@@ -9,6 +9,47 @@ import { useAuth } from "../context/AuthContext";
 
 function CheckoutPage() {
 
+    const [city, setCity] = useState("");
+    const [branch, setBranch] = useState([]);
+    const [postomat, setPostomat] = useState([]);
+    const [dropOff, setDropOff] = useState([]);
+
+    const fetchWarehouses = async () => {
+
+        try {
+        const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                apiKey: "c8f63dec769e505d10494b3dbc3a6dba", // 🔑 встав свій ключ
+                modelName: "Address",
+                calledMethod: "getWarehouses",
+                methodProperties: {
+                    CityName: city,
+                    Language: "UA"
+                }
+            })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            
+            const branches = data.data.filter(el => el.CategoryOfWarehouse === "Branch");
+            const postomats = data.data.filter(el => el.CategoryOfWarehouse === "Postomat");
+            const dropOff = data.data.filter(el => el.CategoryOfWarehouse === "DropOff");
+
+            setBranch(branches);
+            setPostomat(postomats);
+            setDropOff(dropOff);
+            
+        } else {
+            alert("Помилка: " + JSON.stringify(data.errors));
+        }
+        } catch (error) {
+        console.error("Помилка при запиті:", error);
+        }
+    };
+
     const navigate = useNavigate();
     const {cart, dispatch} = useCart();
 
@@ -93,6 +134,46 @@ function CheckoutPage() {
                     <Form.Label>Address</Form.Label>
                     <Form.Control type="text" placeholder="Address" value={form.address} onChange={(e) => setForm({...form, "address": e.target.value})}/>
                 </Form.Group>
+                
+                <Form.Control
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="Введіть місто"
+                style={{marginBottom: "10px"}}
+                />
+                <Button onClick={fetchWarehouses} disabled={!city}>
+                    Знайти
+                </Button>
+
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridCity">
+                    <Form.Label>Branch</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        {branch.map((w) => (
+                            <option key={w.Ref}>{w.Description}</option>
+                        ))}
+                    </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Label>Postomat</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        {postomat.map((w) => (
+                            <option key={w.Ref}>{w.Description}</option>
+                        ))}
+                    </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridZip">
+                    <Form.Label>Dropoff</Form.Label>
+                    <Form.Select defaultValue="Choose...">
+                        {dropOff.map((w) => (
+                            <option key={w.Ref}>{w.Description}</option>
+                        ))}
+                    </Form.Select>
+                    </Form.Group>
+                </Row>
 
                 <Form.Group>
                     <Form.Label>Payment</Form.Label>

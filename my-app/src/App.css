@@ -5,3 +5,9 @@
 .container-main {
   margin: 20px 15%;
 }
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
